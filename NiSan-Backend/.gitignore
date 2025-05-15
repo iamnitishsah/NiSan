@@ -1,0 +1,97 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+*.manifest
+*.spec
+
+# Byte-compiled / optimized / DLL files
+*.pyc
+*.pyo
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+.ENV/
+.Python
+
+# pip environment files
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Django stuff
+*.log
+local_settings.py
+db.sqlite3
+media/
+staticfiles/
+static/
+
+# Django migrations
+**/migrations/
+!**/migrations/__init__.py
+
+# Postgres specific (if using .pgdata etc.)
+*.dump
+*.pgsql
+*.sql
+
+# Environment variables
+.env
+.env.*
+
+# IDEs / Editors
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Icon?
+desktop.ini
+
+# Coverage reports
+htmlcov/
+.coverage
+.tox/
+.nox/
+.cache/
+coverage.xml
+*.cover
+*.py,cover
+
+# pytest
+.pytest_cache/
+nosetests.xml
+test-results/
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# logs
+*.log
+
+# docker
+*.pid
+*.lock
+*.bak
+docker-compose.override.yml
+
+# Optional: if using Jupyter notebooks for testing
+.ipynb_checkpoints/
+
+# VS Code debug
+*.code-workspace
