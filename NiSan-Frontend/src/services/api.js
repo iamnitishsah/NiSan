@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { getToken, clearTokens } from './auth';
 
-const API_URL = 'http://localhost:8000';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+
 
 // Create axios instance with base URL
 const api = axios.create({
