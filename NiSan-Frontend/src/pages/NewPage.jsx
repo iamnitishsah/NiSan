@@ -21,7 +21,6 @@ const NewPage = () => {
     const onSubmit = async e => {
         e.preventDefault();
 
-        // Basic validation
         if (!title.trim() || !content.trim()) {
             setError('Title and content are required');
             return;
@@ -36,36 +35,35 @@ const NewPage = () => {
                 content
             });
 
-            // Redirect to dashboard after successful creation
             navigate('/dashboard', {
-                state: { message: 'Diary page created successfully!' }
+                state: { message: 'Journal entry created successfully!' }
             });
         } catch (err) {
             setError(
                 err.response?.data?.message ||
-                'Failed to create diary page. Please try again.'
+                'Failed to create journal entry. Please try again.'
             );
             setLoading(false);
         }
     };
 
     return (
-        <div className="min-h-screen bg-gray-100">
+        <div className="min-h-screen bg-[#0F1415] bg-opacity-95" style={{backgroundImage: 'url("https://www.transparenttextures.com/patterns/old-paper.png")', backgroundSize: '400px 400px'}}>
             <Navbar />
 
             <div className="container mx-auto px-4 py-8">
-                <div className="bg-white rounded-lg shadow p-6">
-                    <h1 className="text-2xl font-bold text-gray-800 mb-6">Create New Diary Entry</h1>
+                <div className="bg-[#1F2526] rounded-lg shadow-lg border border-[#D4A017] p-6 bg-opacity-90">
+                    <h1 className="text-2xl font-cinzel text-[#E8D5B9] mb-6">Create New Journal Entry</h1>
 
                     {error && (
-                        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
-                            {error}
+                        <div className="bg-[#6B2D2D] bg-opacity-80 border-l-4 border-[#D4A017] p-4 mb-4 rounded">
+                            <p className="font-inter text-[#E8D5B9]">{error}</p>
                         </div>
                     )}
 
                     <form onSubmit={onSubmit}>
                         <div className="mb-4">
-                            <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-1">
+                            <label htmlFor="title" className="block text-sm font-inter text-[#E8D5B9] mb-1">
                                 Title
                             </label>
                             <input
@@ -74,14 +72,14 @@ const NewPage = () => {
                                 name="title"
                                 value={title}
                                 onChange={onChange}
-                                placeholder="Give your diary entry a title"
-                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                                placeholder="Give your journal entry a title"
+                                className="w-full px-3 py-2 font-inter bg-[#0F1415] border border-[#D4A017] rounded focus:outline-none focus:ring-2 focus:ring-[#D4A017] focus:border-[#D4A017] text-[#E8D5B9]"
                                 required
                             />
                         </div>
 
                         <div className="mb-6">
-                            <label htmlFor="content" className="block text-sm font-medium text-gray-700 mb-1">
+                            <label htmlFor="content" className="block text-sm font-inter text-[#E8D5B9] mb-1">
                                 Content
                             </label>
                             <textarea
@@ -91,7 +89,7 @@ const NewPage = () => {
                                 onChange={onChange}
                                 rows="12"
                                 placeholder="Write your thoughts, experiences, or whatever you'd like to remember..."
-                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                                className="w-full px-3 py-2 font-inter bg-[#0F1415] border border-[#D4A017] rounded focus:outline-none focus:ring-2 focus:ring-[#D4A017] focus:border-[#D4A017] text-[#E8D5B9]"
                                 required
                             />
                         </div>
@@ -100,14 +98,14 @@ const NewPage = () => {
                             <button
                                 type="button"
                                 onClick={() => navigate('/dashboard')}
-                                className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 bg-white hover:bg-gray-50"
+                                className="px-4 py-2 border border-[#D4A017] rounded font-inter text-[#E8D5B9] bg-[#1F2526] hover:bg-[#D4A017] hover:text-[#0F1415]"
                             >
                                 Cancel
                             </button>
                             <button
                                 type="submit"
                                 disabled={loading}
-                                className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md disabled:opacity-50"
+                                className="px-4 py-2 bg-[#6B2D2D] hover:bg-[#D4A017] text-[#E8D5B9] rounded font-inter disabled:opacity-50"
                             >
                                 {loading ? 'Saving...' : 'Save Entry'}
                             </button>
