@@ -79,12 +79,12 @@ MIDDLEWARE = [
 
 CORS_ALLOWED_ORIGINS = [
     "https://nisan-frontend.onrender.com",
-    "http://localhost:3000",
+    "http://localhost:5173",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     "https://nisan-frontend.onrender.com",
-    "http://localhost:3000",
+    "http://localhost:5173",
 ]
 
 
