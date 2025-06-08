@@ -78,11 +78,13 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
+    "https://nisan-three.vercel.app",
     "https://nisan-frontend.onrender.com",
     "http://localhost:5173",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
+    "https://nisan-three.vercel.app",
     "https://nisan-frontend.onrender.com",
     "http://localhost:5173",
 ]
