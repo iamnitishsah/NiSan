@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { getAllPages, deletePage, searchPages } from '../services/api';
 import PageCard from '../components/PageCard';
 import Navbar from '../components/Navbar';
+import { isAuthenticated } from '../services/auth';
 
 const Dashboard = () => {
     const [pages, setPages] = useState([]);
@@ -10,6 +11,14 @@ const Dashboard = () => {
     const [error, setError] = useState('');
     const [searchTerm, setSearchTerm] = useState('');
     const [searching, setSearching] = useState(false);
+
+
+    useEffect(() => {
+        if (!isAuthenticated()) {
+            window.location.href = '/login';
+        }
+    }, []);
+
 
     const fetchPages = async () => {
         try {

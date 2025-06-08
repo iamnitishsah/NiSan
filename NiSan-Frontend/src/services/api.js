@@ -3,8 +3,6 @@ import { getToken, clearTokens } from './auth';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
-
-// Create axios instance with base URL
 const api = axios.create({
     baseURL: API_URL,
     headers: {
@@ -12,7 +10,7 @@ const api = axios.create({
     },
 });
 
-// Add a request interceptor to add the auth token to requests
+// Request interceptor for auth token
 api.interceptors.request.use(
     (config) => {
         const token = getToken();
@@ -24,51 +22,29 @@ api.interceptors.request.use(
     (error) => Promise.reject(error)
 );
 
-// Add a response interceptor to handle unauthorized errors
+// Response interceptor for error handling
 api.interceptors.response.use(
     (response) => response,
     (error) => {
-        if (error.response && error.response.status === 401) {
-            // Clear tokens and redirect to login
+        if (error.response?.status === 401) {
             clearTokens();
-            window.location.href = '/login';
+            // Use window.location instead of navigate to ensure complete reload
+            window.location.href = '/login?sessionExpired=true';
         }
         return Promise.reject(error);
     }
 );
 
-// Auth API calls
-export const registerUser = (userData) => {
-    return api.post('/users/register/', userData);
-};
+// Auth API
+export const registerUser = (userData) => api.post('/users/register/', userData);
+export const loginUser = (credentials) => api.post('/users/login/', credentials);
 
-export const loginUser = (credentials) => {
-    return api.post('/users/login/', credentials);
-};
-
-// Diary pages API calls
-export const getAllPages = () => {
-    return api.get('/diary/pages/');
-};
-
-export const getPageById = (id) => {
-    return api.get(`/diary/pages/${id}/`);
-};
-
-export const createPage = (pageData) => {
-    return api.post('/diary/pages/', pageData);
-};
-
-export const updatePage = (id, pageData) => {
-    return api.put(`/diary/pages/${id}/`, pageData);
-};
-
-export const deletePage = (id) => {
-    return api.delete(`/diary/pages/${id}/`);
-};
-
-export const searchPages = (query) => {
-    return api.get(`/diary/pages/?search=${query}`);
-};
+// Diary API
+export const getAllPages = () => api.get('/diary/pages/');
+export const getPageById = (id) => api.get(`/diary/pages/${id}/`);
+export const createPage = (pageData) => api.post('/diary/pages/', pageData);
+export const updatePage = (id, pageData) => api.put(`/diary/pages/${id}/`, pageData);
+export const deletePage = (id) => api.delete(`/diary/pages/${id}/`);
+export const searchPages = (query) => api.get(`/diary/pages/?search=${query}`);
 
 export default api;
